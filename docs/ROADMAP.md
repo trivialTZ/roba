@@ -77,9 +77,12 @@ interactive mouse demo into record→replay→render.
 
 - [ ] **2.1 Control-theory writeup (Aim 2.1).** Synthesize Jia mechanics / slice-push, DiSECt, STAR/SRT-H,
       force/impedance/visual-servoing roles into `docs/CONTROL_SURVEY.md` (skeleton from `REFERENCES.md`).
-- [ ] **2.2 Perception: video → trajectory (Aim 2.3, stage 1).** Pipeline in `perception/video2traj/`:
-      tool/hand pose + optical flow + phase recognition on meat-cutting / surgical clips → cut-path & motion-
-      pattern priors. (ADR-005). Datasets: EPIC-KITCHENS/YouCook2/Ego-Exo4D (food), Cholec80/JIGSAWS (surgical).
+- [x] **2.2 Perception: video → trajectory (Aim 2.3, stage 1) — EXECUTED 2026-06-10.** `perception/
+      video2traj/` ran end-to-end on a synthetic press-push-slice clip: recovered 75 samples, the 3-station
+      structure, the slicing oscillation, phase labels (approach/press/slice), slice-push estimate 0.38;
+      mean normalized tracking error 0.16 vs ground truth (centroid-vs-tip bias). `perception/
+      make_synthetic_cut_video.py`, `validate_traj.py`; figure `out/traj_validation.png`. (Real-dataset
+      footage — EPIC-KITCHENS/Cholec80 — is the next step; forces remain sensor/sim, ADR-005.)
 - [ ] **2.3 Force model: sensor/sim → forces (Aim 2.3, stage 2).** Calibrate DiSECt material params to F/T
       data (real if available, else documented synthetic). Decoupled from 2.2. (ADR-005)
 - [x] **2.4 Task model (a): skin skiving (Aim 2.4a) — VALIDATED headless 2026-06-10.** 🔴 novel.
@@ -103,10 +106,11 @@ calibrated and caveated.
 
 - [ ] **3.1 Merge** Aim-1 sim with Aim-2 control/modeling (shared scene/material params).
 - [ ] **3.2 Experiments** with tracked configs (Hydra + W&B), seeds, and metrics. (ADR-007)
-- [ ] **3.3 GitHub repo** public: Apache-2.0 code + self-authored USD; asset-download script (no NVIDIA
-      asset re-hosting); pinned env; safety disclaimer. (ADR-007)
-- [ ] **3.4 PDF paper** (cs.RO style): implementation, results, **limitations** (native-cutting workaround,
-      forces-from-video impossibility, sim-only force model, skin-skiving validation scope).
+- [x] **3.3 GitHub repo — DONE 2026-06-10.** Public at **https://github.com/trivialTZ/roba** — Apache-2.0,
+      72 files, figures + PDF, no NVIDIA assets re-hosted (`.gitignore` excludes `assets/robots/`), pinned
+      env in `experiments/ENV.md`, safety disclaimer in README. (ADR-007)
+- [x] **3.4 PDF paper — DONE 2026-06-10.** `paper/main.tex` → `paper/main.pdf` (IEEE 2-column, compiles
+      clean, 0 TODOs): system, methods, 4 result figures, full limitations section.
 
 **Exit criterion:** reproducible repo + paper; honest limitations section.
 

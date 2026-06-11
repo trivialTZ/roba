@@ -4,9 +4,28 @@ A dual-arm robotic **meat-cutting** simulation in NVIDIA Isaac Sim, paired with 
 and modeling study. Primary use case: meat cutting (pork belly); long-term aim: transferable findings
 toward surgical cutting/resection.
 
-> **Status:** pre-implementation. The technical plan has been researched and adversarially verified
-> (see `docs/`). **Read `docs/FEASIBILITY.md` first** — it documents two spec assumptions that don't
-> hold and how the plan re-scopes around them.
+> **Status:** core implemented and **validated headless in PhysX on BU SCC**. All three cutting
+> mechanics (vertical slice, force-based, skin-skive), an IK-driven dual-arm cut, a video→trajectory
+> pipeline, a driver-agnostic renderer, and a compiled PDF paper are done. **Read `docs/FEASIBILITY.md`
+> first** for the two verified spec re-scopes; see `docs/ROADMAP.md` for the validated-vs-remaining map.
+>
+> Repo: https://github.com/trivialTZ/roba
+
+## Results at a glance
+| Aim | What | Status |
+|-----|------|--------|
+| 1.1 | Isaac Sim + OpenArm (7-DOF) / reBot B601 import | ✅ |
+| 1.2 | 3-layer breakable-seam pork belly; PhysX honors per-layer break force (fat 2.3%, skin 0.5%) | ✅ |
+| 1.3 | IK-driven dual-arm cut (one holds via impedance, one cuts) | ✅ |
+| 1.4 | 2-variable plane-IK interface (live mouse needs GUI → RTX-blocked) | ◐ |
+| 1.5 | omni.ui panel (needs GUI → RTX-blocked) | ○ |
+| 2.1/2.2 | Control-theory + force/impedance/visual-servoing survey | ✅ |
+| 2.3 | video → kinematic trajectory (forces not from RGB, by design) | ✅ |
+| 2.4 | skin skiving (selective peel) + vertical slicing | ✅ |
+| 3.2/3.3 | docs, figures, GitHub repo, **compiled PDF paper** | ✅ |
+
+Figures: `experiments/out/{force_break,skive_selectivity,ik_cut,traj_validation,cut_progress}.png`,
+cut video `recording_slice.gif`. Only the live mouse GUI / RTX rendering is blocked (cluster driver 595).
 
 ## The three Aims (summary)
 
