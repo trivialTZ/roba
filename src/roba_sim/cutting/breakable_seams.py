@@ -103,6 +103,22 @@ class BreakableSlab:
         self._make_seams(sx)
         # Inter-layer seams let the skin peel off the fat for skin-skiving (Aim 2.4a).
         self._make_interlayer_seams()
+        self._disable_self_collision()
+
+    def _disable_self_collision(self) -> None:
+        """Stop the slab's sub-blocks from colliding WITH EACH OTHER.
+
+        Blocks are authored exactly adjacent and held rigidly by joints; if they also collide,
+        PhysX resolves the face-coincident overlap with large separation impulses that snap the
+        weak seams (lean ~37 N) and scatter the slab before any cut. A collision group filtered
+        against itself removes block-block contacts while keeping block-vs-board/world contacts.
+        """
+        try:
+            cg = UsdPhysics.CollisionGroup.Define(self.stage, f"{self.root}/noSelfCollide")
+            cg.CreateFilteredGroupsRel().AddTarget(cg.GetPath())
+            cg.GetCollidersCollectionAPI().CreateIncludesRel().AddTarget(self.root)
+        except Exception as exc:  # pragma: no cover
+            print(f"[breakable_seams] self-collision filter not applied ({exc})")
 
     def _make_block(self, path, center, size, layer) -> None:
         cube = UsdGeom.Cube.Define(self.stage, path)

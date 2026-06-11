@@ -46,6 +46,20 @@ interactive mouse demo into record→replay→render.
 - Polish item: freed sub-blocks get a large impulse from the kinematic blade (penetration) and can fly
   off — tune blade speed / contact, or break seams slightly ahead of contact, for cleaner clips.
 
+## Deformable cutting — "feels like meat" (DONE 2026-06-10) ✅
+
+The rigid breakable-seam model can't deform (rigid bricks). To make the meat actually squish + part,
+we built a **mass-spring soft body in NVIDIA Warp** (`experiments/warp_cut.py`) — the deformable
+upgrade of the breakable-seam idea: lattice nodes deform under the knife; springs break when the blade
+passes or strain exceeds a per-layer threshold (skin>lean>fat ordering). Runs on **CUDA via warp-lang**
+(a `/projectnb/pi-brout/$USER/roba_work/wenv` venv), so the 595 RTX-driver block is irrelevant — it's
+compute. 3600 nodes / 28.6k springs, stable (explicit, dt 3e-5 × 60 substeps, velocity-clamped),
+4182 springs cut at 3 stations. Rendered driver-free with VTK as a solid layered slab that visibly
+deforms and parts (`experiments/render_softbody.py` → `out/warp_cut.gif`, stills `warp_cut_f{0,28,54}.png`).
+This realizes ADR-001 option (c) — the physics-faithful path — for visualization. (Stiffness is
+visual-scaled for stable real-time; absolute cutting forces stay in the force_cut/breakable-seam results.)
+Next refinement: calibrate spring stiffness/break to real Pa/toughness; add the robot knife driving it.
+
 ## Phase 1 — Aim 1: interactive dual-arm cutting sim 🟡
 
 > Goal: deliver the spec's Aim 1 end-to-end — mouse-driven cutting with a holding arm and a UI.

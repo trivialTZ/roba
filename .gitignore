@@ -24,3 +24,6 @@ perception/*_gt.json
 paper/*.aux
 paper/*.log
 paper/*.out
+
+# Warp env (rebuilt on SCC)
+wenv/

@@ -100,15 +100,20 @@ try:
     res["diag"]["ee_top"] = [round(float(v),4) for v in ee_top]
     res["diag"]["slab_pos"] = [round(float(v),4) for v in cfg.pork.position]
 
-    # IMPEDANCE: set the holding (left) arm to compliant gains
+    # IMPEDANCE: set the holding (left) arm to compliant gains via the articulation CONTROLLER
+    # (SingleArticulation has no get/set_gains — the controller does).
     try:
         ctrl = view.get_articulation_controller()
-        kp = np.array(view.get_gains()[0]).reshape(-1).astype(float)
-        kd = np.array(view.get_gains()[1]).reshape(-1).astype(float)
-        for j in L: kp[j] = cfg.control.hold_stiffness; kd[j] = cfg.control.hold_damping
+        g = ctrl.get_gains()                      # (kps, kds)
+        kp = np.array(g[0]).reshape(-1).astype(float)
+        kd = np.array(g[1]).reshape(-1).astype(float)
+        for j in L:
+            kp[j] = cfg.control.hold_stiffness
+            kd[j] = cfg.control.hold_damping
         ctrl.set_gains(kps=kp, kds=kd)
-        res["diag"]["impedance_set"] = {"stiffness": cfg.control.hold_stiffness, "damping": cfg.control.hold_damping}
-        log("left-arm impedance gains set (compliant hold)")
+        res["diag"]["impedance_set"] = {"stiffness": cfg.control.hold_stiffness,
+                                        "damping": cfg.control.hold_damping}
+        log("left-arm impedance gains set via controller (compliant hold)")
     except Exception as e:
         res["diag"]["impedance_set"] = f"gain API issue: {e}"; log(f"gain set: {e}")
 

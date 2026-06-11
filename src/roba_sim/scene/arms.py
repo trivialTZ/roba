@@ -37,35 +37,48 @@ def import_urdf(urdf_path: str, dest_prim: str) -> str:
     Uses the Isaac Sim URDF importer via omni.kit.commands. Fixed base (manipulator), merged
     fixed joints, and position drive are sensible defaults for an arm; tune on SCC.
     """
+    import importlib
+
     import omni.kit.commands  # available inside Isaac Sim
 
-    # Isaac Sim 6.0 importer (isaacsim.asset.importer.urdf 3.x): create the config via _urdf.ImportConfig()
-    # — the old "URDFCreateImportConfig" command was removed. Falls back to the legacy command on ≤4.x.
-    cfg = None
-    try:
-        from isaacsim.asset.importer.urdf import _urdf
-        cfg = _urdf.ImportConfig()
-    except Exception:
+    # The URDF-importer Python API moved across Isaac versions. Try, in order: the binding submodule
+    # `<pkg>._urdf.ImportConfig`, an `ImportConfig` on the package itself, then the legacy command.
+    # Surface the real errors (and the package's dir()) if none work, instead of silently getting None.
+    cfg, errs = None, []
+    for pkg in ("isaacsim.asset.importer.urdf", "omni.importer.urdf", "omni.isaac.urdf"):
+        try:
+            mod = importlib.import_module(pkg)
+        except Exception as e:
+            errs.append(f"import {pkg}: {e}"); continue
+        # (a) binding submodule pkg._urdf
+        try:
+            _urdf = importlib.import_module(pkg + "._urdf")
+            cfg = _urdf.ImportConfig(); break
+        except Exception as e:
+            errs.append(f"{pkg}._urdf.ImportConfig: {e}")
+        # (b) ImportConfig on the package
+        try:
+            cfg = getattr(mod, "ImportConfig")(); break
+        except Exception as e:
+            errs.append(f"{pkg}.ImportConfig: {e}; dir~={[a for a in dir(mod) if 'onfig' in a or 'mport' in a][:8]}")
+    if cfg is None:
         try:
             _status, cfg = omni.kit.commands.execute("URDFCreateImportConfig")
         except Exception as e:
-            raise RuntimeError(f"could not create URDF import config: {e}")
+            errs.append(f"URDFCreateImportConfig cmd: {e}")
+    if cfg is None:
+        raise RuntimeError("no URDF ImportConfig API found. Tried:\n  " + "\n  ".join(errs))
 
-    cfg.merge_fixed_joints = True
-    cfg.fix_base = True
-    cfg.make_default_prim = False
-    cfg.import_inertia_tensor = True
-    cfg.distance_scale = 1.0
-    try:
-        cfg.default_drive_type = 1      # position drive (field name stable across versions)
-    except Exception:
-        pass
-    omni.kit.commands.execute(
-        "URDFParseAndImportFile",
-        urdf_path=urdf_path,
-        import_config=cfg,
-        dest_path=dest_prim,
-    )
+    # set fields defensively (names are stable but guard anyway)
+    for attr, val in (("merge_fixed_joints", True), ("fix_base", True), ("make_default_prim", False),
+                      ("import_inertia_tensor", True), ("distance_scale", 1.0), ("default_drive_type", 1)):
+        try:
+            setattr(cfg, attr, val)
+        except Exception:
+            pass
+
+    omni.kit.commands.execute("URDFParseAndImportFile", urdf_path=urdf_path,
+                              import_config=cfg, dest_path=dest_prim)
     return dest_prim
 
 
