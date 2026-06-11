@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+
+# Local results/outputs (regenerated; keep figures you want in the paper explicitly)
+experiments/out/*.json
+experiments/*.log
+roba_isaac.*.log
+
+# NVIDIA assets are NOT re-hosted (ADR-007) — downloaded/cloned at setup time
+assets/robots/
+
+# Secrets — never commit
+*.ngc_key
+.ngc_key
+
+# Regenerable media
+perception/*.avi
+perception/*_gt.json
+
+# LaTeX build artifacts
+paper/*.aux
+paper/*.log
+paper/*.out

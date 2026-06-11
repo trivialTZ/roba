@@ -1,0 +1,49 @@
+#!/bin/bash -l
+# Batch (headless) Isaac Sim run — releases the GPU the instant it finishes (no idle reservation).
+#     qsub job_headless.qsub experiments/run_demo.py --headless --auto slice
+# Keep -l h_rt honest.
+
+#$ -P pi-brout                    # SCC project (REQUIRED)
+#$ -N roba_isaac
+#$ -l gpus=1
+#$ -l gpu_type=L40S              # A40/A6000/L40S/RTX6000ada (RT cores). NEVER A100/H200/V100/P100.
+#$ -l h_rt=1:00:00               # set to what you actually need (short → schedules faster)
+#$ -pe omp 4
+#$ -j y
+#$ -o roba_isaac.$JOB_ID.log
+#$ -m ea
+
+set -euo pipefail
+# SGE copies this script to a spool dir, so $0 is not the repo path — source config.sh absolutely.
+source "${SGE_O_WORKDIR:-/projectnb/pi-brout/tztang/roba/deploy/scc}/config.sh"  # $JOB_ID set by SGE
+
+SCRIPT="${1:?usage: qsub job_headless.qsub <script.py> [args...]}"; shift || true
+BINDS=(
+  -B "${ROBA_CACHE}/kit:/isaac-sim/.cache"
+  -B "${ROBA_CACHE}/computecache:/isaac-sim/.nv/ComputeCache"
+  -B "${ROBA_CACHE}/logs:/isaac-sim/.nvidia-omniverse/logs"
+  -B "${ROBA_CACHE}/ovconfig:/isaac-sim/.nvidia-omniverse/config"
+  -B "${ROBA_CACHE}/ovdata:/isaac-sim/.local/share/ov/data"
+  -B "${ROBA_CACHE}/ovpkg:/isaac-sim/.local/share/ov/pkg"
+  -B "${ROBA_CACHE}/hub:/var/cache/hub"
+  -B "${ROBA_CACHE}/kitcache:/isaac-sim/kit/cache"
+  -B "${ROBA_CACHE}/kitlogs:/isaac-sim/kit/logs"
+  -B "${ROBA_REPO}:/workspace/roba"
+  -B "${ROBA_SCRATCH}/assets:/workspace/assets"
+  -B "${ROBA_SCRATCH}/out:/workspace/out"
+)
+mkdir -p "${ROBA_CACHE}"/{kit,computecache,logs,ovconfig,ovdata,ovpkg,hub,kitcache,kitlogs} "${ROBA_SCRATCH}/out"
+
+# HEADLESS workaround: SCC's GPU nodes run NVIDIA driver 595.71.05, on which Isaac Sim's RTX/Vulkan
+# renderer fails (vkCreateDevice ERROR_INITIALIZATION_FAILED — GitHub IsaacSim#537). These env vars
+# make Isaac fall back gracefully so PHYSICS/USD run headless (no RTX). Interactive GUI/camera
+# rendering needs a ~580-driver node (ask BU RCS). Validated working on SCC 2026-06-10.
+nvidia-smi -L
+singularity exec --nv \
+  --env ACCEPT_EULA=Y --env PRIVACY_CONSENT=N --env ROBA_ASSET_ROOT=/workspace/assets/robots \
+  --env VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/nvidia_icd.json \
+  --env __GLX_VENDOR_LIBRARY_NAME=nvidia \
+  --env ROBA_OUT=/workspace/out \
+  "${BINDS[@]}" \
+  "$ROBA_SIF" \
+  /isaac-sim/python.sh "/workspace/roba/${SCRIPT}" "$@"

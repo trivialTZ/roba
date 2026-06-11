@@ -1,0 +1,202 @@
+# References — project "roba"
+
+Annotated bibliography from the feasibility research (12 research + 17 verification agents,
+152 unique sources). Organized by pillar. URLs were retrieved during research (2026-06-10);
+a few ScienceDirect links were paywalled/403 and corroborated via PMC/PubMed mirrors.
+
+
+## Pillar 1 — NVIDIA Isaac Sim as a robotics simulation platform for dual-arm manipulation
+
+- [Isaac Sim 6.0 General Availability - NVIDIA Developer Forums](https://forums.developer.nvidia.com/t/isaac-sim-6-0-general-availability/372621)
+- [Isaac Sim 6.0.0 Release Notes](https://docs.isaacsim.omniverse.nvidia.com/6.0.0/overview/release_notes.html)
+- [Isaac Sim 5.1 System Requirements](https://docs.isaacsim.omniverse.nvidia.com/5.1.0/installation/requirements.html)
+- [Isaac Lab Ecosystem Documentation](https://isaac-sim.github.io/IsaacLab/main/source/setup/ecosystem.html)
+- [Isaac Sim 6.0 URDF Importer Extension](https://docs.isaacsim.omniverse.nvidia.com/6.0.0/importer_exporter/ext_isaacsim_asset_importer_urdf.html)
+- [Isaac Sim 6.0 Python Environment (Standalone)](https://docs.isaacsim.omniverse.nvidia.com/6.0.0/python_scripting/manual_standalone_python.html)
+- [IsaacSim GitHub Repository (Apache 2.0)](https://github.com/isaac-sim/IsaacSim)
+- [Best Practices for Dual-Arm Manipulator Setup in IsaacLab (Discussion #1854)](https://github.com/isaac-sim/IsaacLab/discussions/1854)
+- [Announcing GA for NVIDIA Isaac Sim 5.0 and Isaac Lab 2.2 - NVIDIA Technical Blog](https://developer.nvidia.com/blog/isaac-sim-and-isaac-lab-are-now-available-for-early-developer-preview/)
+- [Using cuRobo with Isaac Sim (dual UR10e multi-arm reacher)](https://curobo.org/get_started/2b_isaacsim_examples.html)
+
+## Pillar 2 — Existence verification of named open-source robot arms (reBot Arm and OpenArm02) for Isaac Sim
+
+- [Seeed-Projects/reBot-DevArm (GitHub)](https://github.com/Seeed-Projects/reBot-DevArm)
+- [Seeed Studio Launches reBot Arm B601 (launch blog)](https://www.seeedstudio.com/blog/2026/04/20/seeed-studio-launches-rebot-arm-b601-a-fully-open-source-robotic-arm-built-for-physical-ai/)
+- [reBot Arm B601-DM (CNX Software)](https://www.cnx-software.com/2026/04/17/rebot-arm-b601-dm-an-open-source-61-dof-robotic-arm-for-embodied-ai-and-teleoperation-applications/)
+- [enactic/openarm (GitHub)](https://github.com/enactic/openarm)
+- [OpenArm official site](https://openarm.dev/)
+- [OpenArm in LeRobot docs (Hugging Face)](https://huggingface.co/docs/lerobot/en/openarm)
+- [enactic/openarm_description (GitHub)](https://github.com/enactic/openarm_description)
+- [Enactic AI's OpenArm 02 (RoboHorizon)](https://robohorizon.uk/en-gb/news/2026/03/enactic-openarm-02-robotics/)
+- [igus ReBeL cobot (separate product, NOT reBot Arm)](https://igusrebel.com/)
+
+## Pillar 3 — Simulation feasibility — cutting deformable soft bodies in NVIDIA Isaac Sim / PhysX
+
+- [NVIDIA Developer Forum — Cutting / Stitching a Deformable Body (official 'not supported' statement)](https://forums.developer.nvidia.com/t/cutting-stitching-a-deformable-body/337325)
+- [PhysX 5.4.1 Documentation — Soft Bodies (topology change note, no cutting API)](https://nvidia-omniverse.github.io/PhysX/physx/5.4.1/docs/SoftBodies.html)
+- [PhysX CHANGELOG (latest v5.6.1, no cutting/tearing/remesh feature)](https://raw.githubusercontent.com/NVIDIA-Omniverse/PhysX/main/physx/CHANGELOG.md)
+- [Isaac Sim GitHub Issue #258 — Feature Request: Soft Body Cutting/Tearing (closed without API)](https://github.com/isaac-sim/IsaacSim/issues/258)
+- [LinkedIn — 'Simulating Cucumber Cutting in Isaac Sim' (breakable PhysicsJoint workaround, 70N break force)](https://www.linkedin.com/posts/parzival2108_roboticssimulation-isaacsim-physicssimulation-activity-7333058253838336002-4Oov)
+- [CRESSim-MPM: MPM Library for Surgical Soft Body Cutting and Suturing (arXiv 2502.18437)](https://arxiv.org/html/2502.18437v3)
+- [TopoCut: Learning Multi-Step Cutting with MLS-MPM in Taichi/FluidLab (arXiv 2509.19712)](https://arxiv.org/html/2509.19712)
+- [SideFX Houdini Docs — Vellum Breaking and Tearing](https://www.sidefx.com/docs/houdini/vellum/breaking_tearing.html)
+
+## Pillar 4 — Mechanical properties for cutting pork/meat tissue layers (skin/rind, subcutaneous fat, lean muscle)
+
+- [The toughness of porcine skin: Quantitative measurements and microstructural characterization (ScienceDirect / Meyers group)](https://www.sciencedirect.com/science/article/abs/pii/S1751616120304021)
+- [The toughness of porcine skin (Meyers group full PDF)](https://meyersgroup.ucsd.edu/papers/journals/Meyers%20477.pdf)
+- [Fracture toughness determination of porcine muscle tissue based on AQLV model derived viscous dissipated energy (PubMed)](https://pubmed.ncbi.nlm.nih.gov/36113396/)
+- [The fracture toughness of soft tissues (PubMed)](https://pubmed.ncbi.nlm.nih.gov/22301183/)
+- [Tensile strength and tenderness of beef sternomandibularis muscle (ScienceDirect)](https://www.sciencedirect.com/science/article/abs/pii/0309174077900316)
+- [Fracture energy during slicing of frozen meat by a vibrating knife (ScienceDirect)](https://www.sciencedirect.com/science/article/abs/pii/S0309174097000338)
+- [A micromechanical model for the Young's modulus of adipose tissue (Comley & Fleck, Semantic Scholar)](https://www.semanticscholar.org/paper/A-micromechanical-model-for-the-Young%E2%80%99s-modulus-of-Comley-Fleck/c44bc1dc7a88814540068372c86f4448a1124ef9)
+- [The mechanical properties of human adipose tissues (Am J Physiol)](https://journals.physiology.org/doi/full/10.1152/ajpendo.00111.2013)
+- [Young's moduli of subcutaneous tissues and muscles via ultrasonography (PMC)](https://pmc.ncbi.nlm.nih.gov/articles/PMC9711973/)
+- [Estimation of Sensory Pork Loin Tenderness Using Warner-Bratzler Shear Force and TPA (PMC)](https://pmc.ncbi.nlm.nih.gov/articles/PMC4932580/)
+- [Cutting moments and grip forces in meat cutting operations and the effect of knife sharpness (PubMed)](https://pubmed.ncbi.nlm.nih.gov/12880746/)
+- [A Comprehensive Understanding of Knife Cutting: hardness, blade angle, micro-geometry (PMC)](https://pmc.ncbi.nlm.nih.gov/articles/PMC10420138/)
+- [Modeling the Effects of Fracture Toughness and Knife (Iowa State / Jia, ICRA21)](https://faculty.sites.iastate.edu/jia/files/inline-files/ICRA21.pdf)
+- [Cutting Soft Matter: Scaling relations controlled by toughness, friction, and wear (arXiv)](https://arxiv.org/pdf/2412.02021)
+- [Pork, medium, with bone, raw density (kg-m3.com)](https://kg-m3.com/material/pork-medium-with-bone-raw)
+
+## Pillar 5 — Damping/impedance control and a holding (stabilizing) arm for a dual-arm grip-and-manipulate setup in Isaac Sim / Isaac Lab
+
+- [Tuning Joint Drive Gains — Isaac Sim Documentation (4.5.0)](https://docs.isaacsim.omniverse.nvidia.com/4.5.0/robot_setup/joint_tuning.html)
+- [Using an operational space controller — Isaac Lab Documentation](https://isaac-sim.github.io/IsaacLab/main/source/tutorials/05_controllers/run_osc.html)
+- [Actuators — Isaac Lab Documentation](https://isaac-sim.github.io/IsaacLab/main/source/overview/core-concepts/actuators.html)
+- [Interacting with an articulation — Isaac Lab Documentation](https://isaac-sim.github.io/IsaacLab/main/source/tutorials/01_assets/run_articulation.html)
+- [Using cuRobo with Isaac Sim — cuRobo](https://curobo.org/get_started/2b_isaacsim_examples.html)
+- [cuRobo: CUDA Accelerated Robot Library](https://curobo.org/index.html)
+- [Surface Gripper Extension — Isaac Sim Documentation (5.1.0)](https://docs.isaacsim.omniverse.nvidia.com/5.1.0/robot_simulation/ext_isaacsim_robot_surface_gripper.html)
+- [Articulation Joint Sensors — Isaac Sim Documentation (5.1.0)](https://docs.isaacsim.omniverse.nvidia.com/5.1.0/sensors/isaacsim_sensors_physics_articulation_force.html)
+- [[Question] How to get force/torque for task space force control? — IsaacLab Discussion #1092](https://github.com/isaac-sim/IsaacLab/discussions/1092)
+- [isaaclab.controllers.operational_space API — Isaac Lab](https://docs.robotsfan.com/isaaclab_official/main/_modules/isaaclab/controllers/operational_space.html)
+- [Isaac Lab: A GPU-Accelerated Simulation Framework for Multi-Modal Robot Learning (arXiv 2511.04831)](https://arxiv.org/html/2511.04831v1)
+- [A Projected Inverse Dynamics Approach for Dual-arm Cartesian Impedance Control (arXiv 1707.00484)](https://arxiv.org/pdf/1707.00484)
+
+## Pillar 6 — Inverse kinematics options in Isaac Sim and 2D-mouse-to-end-effector teleoperation for plane-constrained manipulation
+
+- [Lula Kinematics Solver - Isaac Sim Documentation](https://docs.isaacsim.omniverse.nvidia.com/4.5.0/manipulators/manipulators_lula_kinematics.html)
+- [RMPflow - Isaac Sim Documentation](https://docs.isaacsim.omniverse.nvidia.com/4.5.0/manipulators/concepts/rmpflow.html)
+- [Using cuRobo with Isaac Sim](https://curobo.org/get_started/2b_isaacsim_examples.html)
+- [cuRobo: Parallelized Collision-Free Minimum-Jerk Robot Motion Generation (report)](https://curobo.org/reports/curobo_report.pdf)
+- [cuRobo and cuMotion - Isaac Sim Documentation](https://docs.isaacsim.omniverse.nvidia.com/4.5.0/manipulators/manipulators_curobo.html)
+- [OpenRAVE ikfast Module Documentation](https://openrave.org/docs/latest_stable/openravepy/ikfast/)
+- [Generate IKFast Plugin Tutorial - MoveIt](https://moveit.readthedocs.io/en/latest/doc/ikfast_tutorial.html)
+- [pink: Python inverse kinematics using Pinocchio and QP solvers](https://github.com/stephane-caron/pink)
+- [isaaclab.devices - Isaac Lab Documentation (Se3Keyboard, Se3SpaceMouse)](https://isaac-sim.github.io/IsaacLab/v2.0.0/source/api/lab/isaaclab.devices.html)
+- [Teleoperation and Imitation Learning with Isaac Lab Mimic](https://isaac-sim.github.io/IsaacLab/main/source/overview/imitation-learning/teleop_imitation.html)
+- [Teleoperation - Getting Started With Isaac for Healthcare (mouse->2D robot pose)](https://docs.nvidia.com/learning/physical-ai/getting-started-with-isaac-for-healthcare/latest/training-healthcare-robots-from-scratch/03-data-collection/03-teleoperation.html)
+- [Mouse - Omniverse Developer Guide (carb.input mouse API)](https://docs.omniverse.nvidia.com/dev-guide/latest/programmer_ref/input-devices/mouse.html)
+- [teleop - PyPI (callback/ROS2 target-pose streaming pattern)](https://pypi.org/project/teleop/)
+
+## Pillar 7 — UI for Isaac Sim simulation control (parameter sliders/buttons, start/stop) — omni.ui vs external control panel
+
+- [omni.ui: Omniverse UI Framework Overview — Omniverse Kit](https://docs.omniverse.nvidia.com/kit/docs/omni.ui/latest/Overview.html)
+- [IntSlider — Omniverse Kit (omni.ui)](https://docs.omniverse.nvidia.com/kit/docs/omni.ui/latest/omni.ui/omni.ui.IntSlider.html)
+- [FloatSlider — Omniverse Kit (omni.ui)](https://docs.omniverse.nvidia.com/kit/docs/omni.ui/latest/omni.ui/omni.ui.FloatSlider.html)
+- [[isaacsim.gui.components] Isaac Sim UI Utilities — Isaac Sim Documentation](https://docs.isaacsim.omniverse.nvidia.com/5.0.0/py/source/extensions/isaacsim.gui.components/docs/index.html)
+- [Isaac Sim Extension Templates — Isaac Sim Documentation](https://docs.isaacsim.omniverse.nvidia.com/4.2.0/advanced_tutorials/tutorial_extension_templates.html)
+- [[isaacsim.examples.ui] Isaac Sim UI Example — Isaac Sim Documentation](https://docs.isaacsim.omniverse.nvidia.com/4.5.0/py/source/extensions/isaacsim.examples.ui/docs/index.html)
+- [ROS 2 Simulation Control — Isaac Sim Documentation](https://docs.isaacsim.omniverse.nvidia.com/6.0.0/ros2_tutorials/tutorial_ros2_simulation_control.html)
+- [Python Environment (standalone / headless SimulationApp) — Isaac Sim Documentation](https://docs.isaacsim.omniverse.nvidia.com/5.0.0/python_scripting/manual_standalone_python.html)
+- [Livestream Clients (WebRTC) — Isaac Sim Documentation](https://docs.isaacsim.omniverse.nvidia.com/6.0.0/installation/manual_livestream_clients.html)
+- [Workflows (GUI / extension / standalone) — Isaac Sim Documentation](https://docs.isaacsim.omniverse.nvidia.com/4.5.0/introduction/workflows.html)
+
+## Pillar 8 — Control theories and methods for automatic food cutting and surgical cutting/resection with robots
+
+- [Robotic Cutting: Mechanics and Control of Knife Motion (ICRA 2019, Jia group, Iowa State)](https://robolab-iastate.github.io/papers/ICRA19b.pdf)
+- [Robotic Cutting of Solids Based on Fracture Mechanics and FEM (IROS 2019, Iowa State)](https://robolab-iastate.github.io/papers/IROS19.pdf)
+- [Yan-Bin Jia Journal Articles (incl. T-RO 2024 cutting fruits/vegetables; T-ASE 2024 dexterous cutting + force control)](https://faculty.sites.iastate.edu/jia/journal-articles)
+- [Robotic Cutting of Fruits and Vegetables, IEEE Transactions on Robotics 2024](https://dl.acm.org/doi/abs/10.1109/TRO.2024.3462943)
+- [Robotic Slicing of Fruits and Vegetables: Modeling Effects (ICRA 2021, Iowa State)](https://faculty.sites.iastate.edu/jia/files/inline-files/ICRA21.pdf)
+- [NVIDIA Research: DiSECt - A Differentiable Simulation Engine for Autonomous Robotic Cutting](https://research.nvidia.com/labs/srl/post/nvidia-research-disect-differentiable-simulation-engine-autonomous-robotic-cutting/)
+- [DiSECt: A Differentiable Simulation Engine for Autonomous Robotic Cutting (arXiv 2105.12244)](https://arxiv.org/abs/2105.12244)
+- [DiffSkill: Skill Abstraction from Differentiable Physics for Deformable Object Manipulations with Tools (ICLR 2022)](https://xingyu-lin.github.io/diffskill/)
+- [Sashimi-Bot: Autonomous Tri-manual Advanced Manipulation and Cutting of Deformable Objects (arXiv 2511.11223, 2025)](https://arxiv.org/abs/2511.11223)
+- [Use the Force, Bot! Force-Aware ProDMP with Event-Based Replanning (arXiv 2409.11144)](https://arxiv.org/pdf/2409.11144)
+- [Learning robotic cutting from demonstration: Non-holonomic DMPs via Udwadia-Kalaba (arXiv 2209.12039)](https://arxiv.org/pdf/2209.12039)
+- [Vision-based approaches for cutting food products with robots: A review (ScienceDirect 2025)](https://www.sciencedirect.com/science/article/pii/S0921889025002428)
+- [Autonomous Tissue Manipulation via Surgical Robot Using Learning Based MPC (ICRA 2019, UCLA/Rosen, Raven)](https://arxiv.org/abs/1902.01459)
+- [STAR Robot performs first laparoscopic surgery without human help (Johns Hopkins Hub, 2022)](https://hub.jhu.edu/2022/01/26/star-robot-performs-intestinal-surgery/)
+- [Autonomous Surgical Robots Enhance Precision (IEEE Spectrum, STAR control/sensing)](https://spectrum.ieee.org/star-autonomous-surgical-robot)
+- [SRT-H: Hierarchical Framework for Autonomous Surgery via Language-Conditioned Imitation Learning (Science Robotics 2025)](https://www.science.org/doi/10.1126/scirobotics.adt5254)
+- [SRT-H arXiv preprint (2505.10251)](https://arxiv.org/abs/2505.10251)
+- [Robot performs first realistic surgery without human help (JHU Hub, gallbladder, 2025)](https://hub.jhu.edu/2025/07/09/robot-performs-first-realistic-surgery-without-human-help/)
+- [Autonomous Closed-Loop Control for Robotic Soft Tissue Electrosurgery Using RGB-D Image Guidance (IEEE T-MRB 2025, JHU)](https://hamr.lcsr.jhu.edu/wp-content/uploads/2025/10/Autonomous_Closed-Loop_Control_for_Robotic_Soft_Tissue_Electrosurgery_Using_RGB-D_Image_Guidance.pdf)
+- [Hybrid Position-Force Control overview (ScienceDirect Topics)](https://www.sciencedirect.com/topics/engineering/hybrid-position-force-control)
+- [Robot Technology for Pork and Beef Meat Slaughtering Process: A Review (Animals/MDPI, PMC)](https://pmc.ncbi.nlm.nih.gov/articles/PMC9951719/)
+- [A review of robotic and automated systems in meat processing (Frontiers in Robotics and AI, 2025)](https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1578318/full)
+
+## Pillar 9 — Control paradigms (force control, damping/impedance control, visual servoing) in robotic cutting tasks (food and surgical)
+
+- [Robotic Cutting: Mechanics and Control of Knife Motion (Mu, Xue, Jia, ICRA 2019)](https://faculty.sites.iastate.edu/jia/files/inline-files/ICRA19.pdf)
+- [Data-Driven Model Predictive Control for the Contact-Rich Task of Food Cutting (Mitsioni et al., 2019)](https://arxiv.org/pdf/1903.03831)
+- [SliceIt! A Dual Simulator Framework for Learning Robot Food Slicing (arXiv 2404.02569)](https://arxiv.org/html/2404.02569v1)
+- [Semi-Autonomous Electrosurgery for Tumor Resection Using a MDOF Electrosurgical Tool and Visual Servoing (STAR, PMC)](https://pmc.ncbi.nlm.nih.gov/articles/PMC5830156/)
+- [Force/vision control for robotic cutting of soft materials (Long et al., IROS 2014, Inria HAL)](https://inria.hal.science/hal-02461924)
+- [Surfing on an uncertain edge: Precision cutting of soft tissue using torque-based medium classification (Straizys et al., 2019)](https://arxiv.org/pdf/1909.07247)
+- [Impedance force control for lateral milling of bone in total knee arthroplasty (IEEE)](https://ieeexplore.ieee.org/document/4414099/)
+- [Vision-based approaches for cutting food products with robots: A review (2025, ScienceDirect)](https://www.sciencedirect.com/science/article/pii/S0921889025002428)
+- [Robotic Cutting of Soft Materials using Force Control & Image Moments (Inria HAL)](https://inria.hal.science/hal-02461938)
+- [Learning-based Force Sensing and Impedance Matching for Safe Haptic Feedback in Robot-assisted Laparoscopic Surgery (NIMA, arXiv 2601.14445)](https://arxiv.org/html/2601.14445v2)
+
+## Pillar 10 — From cutting video to a mathematical-physical model of the cutting process: perception (blade/hand/tool tracking, optical flow, pose), VLM action understanding, learning-from-demonstration, surgical and food datasets, and the realistic limits of extracting trajectories and forces from RGB video.
+
+- [SurgiPose: Estimating Surgical Tool Kinematics from Monocular Video for Surgical Robot Learning (arXiv 2512.18068)](https://arxiv.org/html/2512.18068v1)
+- [Learning to See Forces: Surgical Force Prediction with RGB-Point Cloud Temporal CNNs (arXiv 1808.00057)](https://arxiv.org/abs/1808.00057)
+- [SurgeMOD: Translating image-space tissue motions into vision-based surgical forces (arXiv 2406.17707)](https://arxiv.org/pdf/2406.17707)
+- [Vision-Based Force Estimation for MIS via Contact Detection and Local Stiffness Models (arXiv 2403.18172)](https://arxiv.org/pdf/2403.18172)
+- [Robotic Cutting of Fruits and Vegetables: Modeling Deformation, Fracture Toughness, Knife Geometry, and Motion (IEEE T-RO 2024)](https://ieeexplore.ieee.org/document/10682567/)
+- [Slicing frozen meat with an oscillating knife (fracture toughness / slice-velocity force reduction)](https://pubmed.ncbi.nlm.nih.gov/22061861/)
+- [DiSECt: A Differentiable Simulation Engine for Autonomous Robotic Cutting (NVIDIA SRL)](https://research.nvidia.com/labs/srl/post/nvidia-research-disect-differentiable-simulation-engine-autonomous-robotic-cutting/)
+- [DiSECt: A Differentiable Simulator for Parameter Inference and Control in Robotic Cutting (arXiv 2203.10263)](https://arxiv.org/pdf/2203.10263)
+- [Neural Fields for 3D Tracking of Anatomy and Surgical Instruments in Monocular Laparoscopic Video (arXiv 2403.19265)](https://arxiv.org/html/2403.19265v1)
+- [Occlusion-robust scene flow-based tissue deformation recovery (Int J CARS 2023, PMC10284992)](https://pmc.ncbi.nlm.nih.gov/articles/PMC10284992/)
+- [3D Hand Pose Estimation in Everyday Egocentric Images (arXiv 2312.06583)](https://arxiv.org/html/2312.06583v2)
+- [Ego-Exo 3D Hand Tracking in the Wild with a Mobile Multi-Camera Rig (arXiv 2510.02601)](https://arxiv.org/pdf/2510.02601)
+- [Learning joint reconstruction of hands and manipulated objects (MANO, arXiv 1904.05767)](https://arxiv.org/pdf/1904.05767)
+- [SurgPub-Video / SurgLLaVA-Video: Surgical Video Dataset for VLMs (arXiv 2508.10054)](https://arxiv.org/html/2508.10054v1)
+- [SurgVidLM: Multi-grained Surgical Video Understanding with LLM (arXiv 2506.17873)](https://arxiv.org/pdf/2506.17873)
+- [Vision-language models for laparoscopic surgery documentation: proof-of-concept (PMC12626568)](https://pmc.ncbi.nlm.nih.gov/articles/PMC12626568/)
+- [Multi-Modal Gesture Recognition from Video and Surgical Tool Pose (JIGSAWS, arXiv 2503.15647)](https://arxiv.org/abs/2503.15647)
+- [CAMMA Datasets (Cholec80 and others)](https://camma.unistra.fr/datasets/)
+- [YouCookII Dataset readme (2000 videos, 89 recipes, step localization)](http://youcook2.eecs.umich.edu/static/YouCookII/youcookii_readme.pdf)
+- [Ego-Exo4D: Understanding Skilled Human Activity from First- and Third-Person Perspectives (arXiv 2311.18259)](https://arxiv.org/html/2311.18259v4)
+- [Visual imitation learning from one-shot demonstration (DMPs, Sci Rep 2025, PMC12686424)](https://www.nature.com/articles/s41598-025-30938-x)
+- [DITTO: Demonstration Imitation by Trajectory Transformation (arXiv 2403.15203)](https://arxiv.org/pdf/2403.15203)
+- [Safe and Transparent Robots for Human-in-the-Loop Meat Processing (arXiv 2508.14763)](https://arxiv.org/html/2508.14763)
+- [SliceIt! A Dual Simulator Framework for Learning Robot Food Slicing (arXiv 2404.02569)](https://arxiv.org/html/2404.02569v1)
+
+## Pillar 11 — Control approaches for two cutting subtasks: (a) tangential skiving/peeling of a rubbery skin layer at shallow constant depth, and (b) vertical press-and-slice cutting of layered pork belly
+
+- [Robotic Cutting: Mechanics and Control of Knife Motion (Jia et al., ICRA 2019)](https://faculty.sites.iastate.edu/jia/files/inline-files/ICRA19.pdf)
+- [DiSECt: A Differentiable Simulator for Parameter Inference and Control in Robotic Cutting (arXiv 2203.10263)](https://arxiv.org/abs/2203.10263)
+- [MORPHeus: a Multimodal One-armed Robot-assisted Peeling System with Human Users In-the-loop (arXiv 2404.06570)](https://arxiv.org/html/2404.06570v1)
+- [AutoPeel: Adhesion-aware Safe Peeling Trajectory Optimization for Robotic Wound Care (arXiv 2409.14282)](https://arxiv.org/abs/2409.14282)
+- [Surface Following using Deep Reinforcement Learning and a GelSight Tactile Sensor (arXiv 1912.00745)](https://arxiv.org/pdf/1912.00745)
+- [Pose and shear-based tactile servoing (arXiv 2312.08411)](https://arxiv.org/pdf/2312.08411)
+- [Smart Knife: Integrated Intelligence for Robotic Meat Cutting (IEEE)](https://ieeexplore.ieee.org/document/9905495/)
+- [Force/vision control for robotic cutting of soft materials (Long/Khalil/Martinet, IROS 2014, Inria HAL)](https://inria.hal.science/hal-02461924v1/document)
+- [A review of robotic and automated systems in meat processing (Frontiers in Robotics and AI, 2025)](https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1578318/full)
+- [Quantitative peel test for thin films/layers (Scientific Reports, 2019)](https://www.nature.com/articles/s41598-019-55355-9)
+- [Peeling behavior of a viscoelastic thin-film on a rigid substrate (ScienceDirect)](https://www.sciencedirect.com/science/article/pii/S0020768314003825)
+- [Fish skinning machine (industrial deskinning, blade-and-roller)](https://www.meat-machinery.com/fish-processing-machinery/fish-skinning-machine.html)
+
+## Pillar 12 — Project structure and reproducibility for an Isaac Sim robotic-manipulation research project (repo layout, version pinning, experiment documentation, PDF paper, and reproducibility/licensing pitfalls)
+
+- [IsaacLabExtensionTemplate (external project template)](https://github.com/isaac-sim/IsaacLabExtensionTemplate)
+- [Isaac Lab — Project Structure (external project)](https://isaac-sim.github.io/IsaacLab/main/source/overview/own-project/project_structure.html)
+- [Isaac Lab — Repository organization](https://isaac-sim.github.io/IsaacLab/main/source/overview/developer-guide/repo_structure.html)
+- [Isaac Lab GitHub repo (compatibility matrix, environment.yml, docker/)](https://github.com/isaac-sim/IsaacLab)
+- [Isaac Lab — Docker Guide (NGC images, volume caches, version pinning)](https://isaac-sim.github.io/IsaacLab/main/source/deployment/docker.html)
+- [Isaac Lab — Create new project or task (template generator)](https://isaac-sim.github.io/IsaacLab/main/source/overview/own-project/template.html)
+- [Hydra and WandB for Machine Learning Experiments](https://mlblog.lionelpeer.ch/posts/2024-06-18_hydra_wandb/)
+- [PyTorch — Reproducibility / Randomness notes](https://glaringlee.github.io/notes/randomness.html)
+- [ML@CMU — Reproducibility best practices](https://blog.ml.cmu.edu/2020/08/31/5-reproducibility/)
+- [CoRL 2026 — Instruction for Authors](https://www.corl.org/contributions/instruction-for-authors)
+- [IEEE ICRA 2026 — Final Paper Submission Instructions](https://2026.ieee-icra.org/contribute/final-paper-submission-instructions/)
+- [RSS — Call for Papers](https://roboticsconference.org/information/cfp/)
+- [arXiv Robotics (cs.RO) listing — Jan 2026](https://arxiv.org/list/cs.RO/2026-01)
+- [NVIDIA SimReady Assets (glossary)](https://developer.nvidia.com/omniverse/simready-assets)
+- [NVIDIA Omniverse License Agreement (SimReady)](https://docs.omniverse.nvidia.com/simready/latest/common/NVIDIA_Omniverse_License_Agreement.html)

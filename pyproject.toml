@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "roba-sim"
+version = "0.1.0"
+description = "Dual-arm robotic meat-cutting simulation in NVIDIA Isaac Sim"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+# NOTE: Isaac Sim, omni.*, pxr, carb are provided by the Isaac Sim container — NOT pip deps.
+# Only the GPU-free extras are listed here so the core/tests run on any machine.
+dependencies = []
+
+[project.optional-dependencies]
+core = ["numpy"]                                  # control/teleop math on a plain machine
+perception = ["numpy", "opencv-python"]           # video2traj baseline
+dev = ["pytest", "numpy"]
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-q"
